@@ -1,0 +1,19 @@
+package controle4;
+import java.util.Scanner;
+
+// C = 5/9 * (F - 32)
+public class temperatura {
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in); 
+		
+		System.out.print("Temperatura: "); 
+		double f = scanner.nextDouble(); 
+		
+		double c = 5.0/9.0 * (f - 32); 
+		
+		System.out.println(f + " fahrenheit " + " = " + c + " ceulsius"); 
+	}
+
+}
+
