@@ -1,0 +1,41 @@
+package controle7;
+import java.util.Scanner; 
+
+//5. Elabore um programa para solicitar o nome de uma equipe de futebol, a
+//quantidade de derrotas, empates e vitórias obtidas por ela no campeonato.
+//Calcular e informar: a quantidade de pontos ganhos e a quantidade de pontos
+//perdidos. V: 3 E: 1 D: 3 
+
+public class timesFutebol {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in); 
+		
+		System.out.print("Nome da equipe:  ");
+		String equipe = scanner.nextLine(); 
+		
+		System.out.print("Quantidade de derrotas:  ");
+		int derrotas = scanner.nextInt();  
+		
+		System.out.print("Quantidade de empates:  ");
+		int empates = scanner.nextInt();  
+		
+		System.out.print("Quantidade de vitorias:  ");
+		int vitorias = scanner.nextInt();  
+		
+		double v = (vitorias * 3 ) + empates; 
+		double d = (derrotas * 3); 
+		
+		System.out.println("\nEquipe: " + equipe); 
+		System.out.println("Vitorias: " + v);
+		System.out.println("Derrotas: " + d); 
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+
+}
