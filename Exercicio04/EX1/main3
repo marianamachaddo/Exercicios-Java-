@@ -1,0 +1,42 @@
+package pacote3;
+import java.util.Scanner; 
+
+public class main3 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); 
+        
+        pacote3.salarioEmpregado salarioEmpregado = new salarioEmpregado(); 
+        
+        System.out.print("Matricula do funcionario 1: ");
+        salarioEmpregado.setMat1(scanner.nextInt()); 
+        
+        System.out.print("Salario do funcionario 1: "); 
+        salarioEmpregado.setSalario1(scanner.nextDouble()); 
+        
+        System.out.print("Matricula do funcionario 2: "); 
+        salarioEmpregado.setMat2(scanner.nextInt());  
+        
+        System.out.print("Salario do funcionario 2: "); 
+        salarioEmpregado.setSalario2(scanner.nextDouble());  
+        
+        double desconto = salarioEmpregado.Desconto(); 
+        double acrescimo = salarioEmpregado.Acrescimo();  
+        double calcularDesconto = salarioEmpregado.calcularDesconto(); 
+        double calcularAcrescimo = salarioEmpregado.calcularAcrescimo(); 
+        
+        // Saídas
+        System.out.println("\n\nMat do funcionario 1: " + salarioEmpregado.getMat1()); 
+        System.out.println("Salario do funcionario 1: R$ " + salarioEmpregado.getSalario1()); 
+        System.out.printf("Desconto: R$ %.2f%n", desconto);
+        System.out.printf("Valor do salario com desconto de 5%%: R$ %.2f%n%n", calcularDesconto);
+        
+        System.out.println("Mat do funcionario 2: " + salarioEmpregado.getMat2()); 
+        System.out.println("Salario do funcionario 2: R$ " + salarioEmpregado.getSalario2());
+        System.out.printf("Acrescimo de 9%%: R$ %.2f%n", acrescimo); 
+        System.out.printf("Valor do salario com acrescimo de 9%%: R$ %.2f%n", calcularAcrescimo);  
+
+        scanner.close();
+    }
+
+}
