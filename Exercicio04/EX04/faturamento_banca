@@ -1,0 +1,48 @@
+package contole6;
+import java.util.Scanner; 
+import java.text.DecimalFormat;
+
+//4. O camelô Zé da banca vende diariamente, games, calculadoras e canetas. Faça
+//um programa para solicitar o total de games, o total de calculadoras e o
+//total de canetas vendidas ao término do dia. O programa deve solicitar também
+//o preço de cada um dos produtos e ao final calcular e informar o total do
+//faturamento com cada produto e o faturamento total.
+
+public class calcularTotal {
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		DecimalFormat df = new DecimalFormat("#.00"); 
+		
+		System.out.print("Total de games: "); 
+		int total_games = scanner.nextInt(); 
+
+		System.out.print("Valor de cada game: "); 
+		double valor_games = scanner.nextDouble();  
+		
+		System.out.print("Total de calculadoras: ");
+		int total_calculadoras = scanner.nextInt(); 
+		
+		System.out.print("Valor de cada calculadora: "); 
+		double valor_calculadora = scanner.nextDouble();  
+		
+		System.out.print("Total de canetas vendidas: "); 
+		int total_canetas = scanner.nextInt(); 
+		
+		System.out.print("Valor de cada canetas: "); 
+		double valor_canetas = scanner.nextDouble();  
+		
+		double f_games = total_games * valor_games; 
+		double f_cal = total_calculadoras * valor_calculadora;
+		double f_canetas = total_canetas * valor_canetas; 
+		double f_total = f_games + f_cal + f_canetas; 
+		
+		System.out.println("Faturamento games: " + df.format(f_games)); 
+		System.out.println("Faturamento calculadoras: " + df.format(f_cal));
+		System.out.println("Faturamento canetas: " + df.format(f_canetas)); 
+		System.out.println("Faturamento total: " + df.format(f_total)); 
+		
+	}
+	
+
+}
