@@ -1,0 +1,54 @@
+package hospital.repositorio;
+
+import hospital.dominio.Paciente;
+import java.util.ArrayList;
+
+public class PacienteRepository {
+    private ArrayList<Paciente> pacientes;
+
+    public PacienteRepository() {
+        pacientes = new ArrayList<>();
+    }
+
+    // Adiciona um novo paciente
+    public void adicionarPaciente(Paciente paciente) {
+        pacientes.add(paciente);
+    }
+
+    // Altera um paciente
+    public boolean alterarPaciente(int id, Paciente pacienteAlterado) {
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getId() == id) {
+                pacientes.set(i, pacienteAlterado);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Exclui um paciente
+    public boolean excluirPaciente(int id) {
+        return pacientes.removeIf(paciente -> paciente.getId() == id);
+    }
+
+    // Lista todos os pacientes
+    public void listarPacientes() {
+        if (pacientes.isEmpty()) {
+            System.out.println("Nenhum paciente cadastrado.");
+        } else {
+            for (Paciente p : pacientes) {
+                System.out.println(p);
+            }
+        }
+    }
+
+    // Busca paciente por ID
+    public Paciente buscarPacientePorId(int id) {
+        for (Paciente p : pacientes) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+}
