@@ -1,0 +1,102 @@
+package hospital.controle;
+
+import hospital.dominio.Paciente;
+import hospital.repositorio.PacienteRepository;
+import java.util.Scanner;
+
+public class ControlePaciente {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        PacienteRepository repo = new PacienteRepository();
+        
+        boolean continuar = true;
+
+        while (continuar) {
+            System.out.println("\nMenu de Controle de Pacientes:");
+            System.out.println("1. Adicionar Paciente");
+            System.out.println("2. Alterar Paciente");
+            System.out.println("3. Excluir Paciente");
+            System.out.println("4. Listar Pacientes");
+            System.out.println("5. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();  // Consumir a quebra de linha
+
+            switch (opcao) {
+                case 1:
+                    // Adicionar paciente
+                    System.out.print("Digite o ID do paciente: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();  // Consumir a quebra de linha
+                    System.out.print("Digite o nome do paciente: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("Digite o peso do paciente: ");
+                    double peso = scanner.nextDouble();
+                    System.out.print("Digite a altura do paciente: ");
+                    double altura = scanner.nextDouble();
+                    System.out.print("Digite o sexo do paciente (1 para masculino, 2 para feminino): ");
+                    int sexo = scanner.nextInt();
+
+                    Paciente paciente = new Paciente(id, nome, peso, altura, sexo);
+                    repo.adicionarPaciente(paciente);
+                    System.out.println("Paciente adicionado com sucesso!");
+                    break;
+
+                case 2:
+                    // Alterar paciente
+                    System.out.print("Digite o ID do paciente que deseja alterar: ");
+                    int idAlterar = scanner.nextInt();
+                    scanner.nextLine();  // Consumir a quebra de linha
+
+                    Paciente pacienteExistente = repo.buscarPacientePorId(idAlterar);
+                    if (pacienteExistente != null) {
+                        System.out.print("Digite o novo nome do paciente: ");
+                        String novoNome = scanner.nextLine();
+                        System.out.print("Digite o novo peso do paciente: ");
+                        double novoPeso = scanner.nextDouble();
+                        System.out.print("Digite a nova altura do paciente: ");
+                        double novaAltura = scanner.nextDouble();
+                        System.out.print("Digite o novo sexo do paciente (1 para masculino, 2 para feminino): ");
+                        int novoSexo = scanner.nextInt();
+
+                        Paciente pacienteAlterado = new Paciente(idAlterar, novoNome, novoPeso, novaAltura, novoSexo);
+                        if (repo.alterarPaciente(idAlterar, pacienteAlterado)) {
+                            System.out.println("Paciente alterado com sucesso!");
+                        } else {
+                            System.out.println("Paciente não encontrado.");
+                        }
+                    } else {
+                        System.out.println("Paciente não encontrado.");
+                    }
+                    break;
+
+                case 3:
+                    // Excluir paciente
+                    System.out.print("Digite o ID do paciente que deseja excluir: ");
+                    int idExcluir = scanner.nextInt();
+                    if (repo.excluirPaciente(idExcluir)) {
+                        System.out.println("Paciente excluído com sucesso!");
+                    } else {
+                        System.out.println("Paciente não encontrado.");
+                    }
+                    break;
+
+                case 4:
+                    // Listar pacientes
+                    repo.listarPacientes();
+                    break;
+
+                case 5:
+                    // Sair
+                    continuar = false;
+                    System.out.println("Sistema finalizado.");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+
+        scanner.close();
+    }
+}
