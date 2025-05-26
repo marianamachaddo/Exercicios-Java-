@@ -1,0 +1,24 @@
+package controle;
+
+import dominio.Aluno;
+import persistencia.AlunoDAO;
+
+import java.util.List;
+
+public class ControleAluno {
+    private List<Aluno> listaAlunos;
+
+    public ControleAluno() {
+        this.listaAlunos = AlunoDAO.carregarAlunos();
+    }
+
+    public void cadastrarAluno(int matricula, String nome, double cr) {
+        Aluno novoAluno = new Aluno(matricula, nome, cr);
+        listaAlunos.add(novoAluno);
+        AlunoDAO.salvarAlunos(listaAlunos);
+    }
+
+    public List<Aluno> listarAlunos() {
+        return listaAlunos;
+    }
+}
