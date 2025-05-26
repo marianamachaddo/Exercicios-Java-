@@ -1,0 +1,62 @@
+import controle.ControleAluno;
+import dominio.Aluno;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        ControleAluno controle = new ControleAluno();
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
+
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Cadastrar novo aluno");
+            System.out.println("2. Listar todos os alunos");
+            System.out.println("0. Sair");
+            System.out.print("Escolha a opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir quebra de linha
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Matrícula: ");
+                    int matricula = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Nome: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("Coeficiente de rendimento: ");
+                    double cr = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    controle.cadastrarAluno(matricula, nome, cr);
+                    System.out.println("Aluno cadastrado com sucesso!");
+                    break;
+
+                case 2:
+                    List<Aluno> alunos = controle.listarAlunos();
+                    if (alunos.isEmpty()) {
+                        System.out.println("Nenhum aluno cadastrado.");
+                    } else {
+                        System.out.println("\nLista de alunos:");
+                        for (Aluno a : alunos) {
+                            System.out.println("Matrícula: " + a.getMatricula() +
+                                               ", Nome: " + a.getNome() +
+                                               ", CR: " + a.getCoeficienteRendimento());
+                        }
+                    }
+                    break;
+
+                case 0:
+                    System.out.println("Saindo...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 0);
+
+        scanner.close();
+    }
+}
